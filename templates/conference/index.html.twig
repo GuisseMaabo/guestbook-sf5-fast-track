@@ -17,7 +17,7 @@
                 important reason is if you change the path (from /conference/{id} to
                 /conferences/{id} for instance), all links must be updated manually.-->
             <!-- <a href="/conference/{{ conference.id }}">View</a>-->
-            <a href="{{ path('conference', { id: conference.id }) }}">View</a>
+            <a href="{{ path('conference', { slug: conference.slug }) }}">View</a>
         </p>
     {% endfor %}
 </div>

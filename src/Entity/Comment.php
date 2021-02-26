@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=CommentRepository::class)
+ * @ORM\Table(name="`Comment`")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comment
 {
@@ -46,7 +48,7 @@ class Comment
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $photoFilename;
+    private $photoFileName;
 
     public function __toString(): string {
         return (string) $this->getEmail();
@@ -105,6 +107,14 @@ class Comment
         return $this;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
+
+     public function setCreatedAtValue()  {
+         $this->createdAt = new \DateTime();
+     }
+
     public function getConference(): ?Conference
     {
         return $this->conference;
@@ -117,15 +127,16 @@ class Comment
         return $this;
     }
 
-    public function getPhotoFilename(): ?string
+    public function getPhotoFileName(): ?string
     {
-        return $this->photoFilename;
+        return $this->photoFileName;
     }
 
-    public function setPhotoFilename(?string $photoFilename): self
+    public function setPhotoFileName(?string $photoFileName): self
     {
-        $this->photoFilename = $photoFilename;
+        $this->photoFileName = $photoFileName;
 
         return $this;
     }
+
 }

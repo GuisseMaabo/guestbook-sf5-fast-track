@@ -37,7 +37,9 @@ class ConferenceController extends AbstractController
              ]));
     }
 
-    #[Route('/conference/{id}',  name:"conference")]
+    ##[Route('/conference/{id}',  name:"conference")]
+    #[Route('/conference/{slug}',  name:"conference")]
+
      /*public function show(Environment $twig, Conference $conference,
 CommentRepository $commentRepository)*/
 
